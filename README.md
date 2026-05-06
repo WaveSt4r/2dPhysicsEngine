@@ -69,15 +69,25 @@ The goal is not to be production-ready, but to learn how physics engines and ren
 
 ```
 src/
+├── GamePanel.java # Contains the main method, initializes and starts the project
 ├── Game.java # Main loop and initialization
 ├── Scene.java # Holds and updates all objects
-├── RigidBody2D.java # Physics data (position, velocity)
 ├── Physics.java # Collision system + matrix
 ├── Renderer.java # Software rendering
+|
+├── RigidBody2D.java # Physics data (position, velocity)
+├── CollisionShape.java # Collision shape of the RigidBody2D
+├── CircleCollider.java
+├── BoxCollider.java
+├── ColliderType.java
+|
+├── Mesh.java # Mesh of the RigidBody2D
+├── BoxMesh.java
+├── CircleMesh.java
+├── GraphicElements2D.java
+|
+├── Color.java # Color utilities
 ├── Vector2.java # Math utilities
-├── Collider/
-│ ├── CircleCollider.java
-│ └── BoxCollider.java
 ```
 
 ---
@@ -110,6 +120,7 @@ src/
 - Circle vs Circle and Box vs Box collisions
 - Proper physics response (impulse-based)
 - Gravity and forces
+- Static Bodies
 - Spatial partitioning (QuadTree / Grid)
 - Better architecture (full composition / ECS approach)
 - Rendering improvements (double buffering, UI layer)

@@ -1,3 +1,9 @@
+package render.mesh;
+
+import math.Vector2;
+import render.GraphicElements2D;
+import render.Renderer;
+
 public class BoxMesh implements Mesh {
     double width;
     double height;

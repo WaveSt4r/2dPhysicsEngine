@@ -1,3 +1,5 @@
+package math;
+
 public class Vector2 {
     public double x;
     public double y;
@@ -28,5 +30,9 @@ public class Vector2 {
 
     public double distanceSquared (Vector2 v) {
         return (x - v.x) * (x - v.x) + (y - v.y) * (y - v.y);
+    }
+
+    public double dotProduct(Vector2 v) {
+        return (this.x*v.x)+(this.y+v.y);
     }
 }

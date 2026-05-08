@@ -1,3 +1,13 @@
+package core;
+
+import math.Vector2;
+import physics.collider.BoxCollider;
+import physics.collider.CircleCollider;
+import physics.RigidBody2D;
+import render.*;
+import render.mesh.BoxMesh;
+import render.mesh.CircleMesh;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -8,9 +18,10 @@ public class Game {
     public boolean game = true;
     public Scene currentScene;
 
-    static Color backgroundColor = new Color(0, 202, 224);
-    static Color foregroundColor = new Color(255,255,255);
-    static Color borderColor = new Color(0,0,0);
+    static ColorRGB backgroundColor = new ColorRGB(15,80,115);
+    static ColorRGB foregroundColor = new ColorRGB(255,255,255);
+    static ColorRGB borderColor = new ColorRGB(255,255,255);
+    static ColorRGB wallsColor = new ColorRGB(97,157,91);
 
     public void start () {
         List<RigidBody2D> rigidBody2DList = new ArrayList<>();
@@ -24,27 +35,27 @@ public class Game {
                 new CircleCollider(20),
                 new CircleMesh(20, ballGraphicElements2D)
         );
-        ball.velocity = new Vector2(1,1);
+        ball.velocity = new Vector2(3,3);
         scene1.add(ball);
 
 
         // Box
+        GraphicElements2D wallsGraphicElements2D = new GraphicElements2D(wallsColor, borderColor, 5);
         RigidBody2D box = new RigidBody2D(
                 new Vector2(500,400),
                 1d,
                 new BoxCollider(50, 50),
-                new BoxMesh(50, 50, ballGraphicElements2D)
+                new BoxMesh(50, 50, wallsGraphicElements2D)
         );
         scene1.add(box);
 
 
         // Floor
-        GraphicElements2D rectGraphicElements2D = new GraphicElements2D(foregroundColor, borderColor, 5);
         RigidBody2D floor = new RigidBody2D(
                 new Vector2(0,550),
                 1d,
                 new BoxCollider(800, 50),
-                new BoxMesh(800, 50, rectGraphicElements2D)
+                new BoxMesh(800, 50, wallsGraphicElements2D)
         );
         scene1.add(floor);
 
@@ -54,7 +65,7 @@ public class Game {
                 new Vector2(750,0),
                 1d,
                 new BoxCollider(50, 600),
-                new BoxMesh(50, 600, rectGraphicElements2D)
+                new BoxMesh(50, 600, wallsGraphicElements2D)
         );
         scene1.add(leftWall);
 
@@ -64,7 +75,7 @@ public class Game {
                 new Vector2(0,0),
                 1d,
                 new BoxCollider(50, 600),
-                new BoxMesh(50, 600, rectGraphicElements2D)
+                new BoxMesh(50, 600, wallsGraphicElements2D)
         );
         scene1.add(rightWall);
 
@@ -74,7 +85,7 @@ public class Game {
                 new Vector2(0,0),
                 1d,
                 new BoxCollider(800, 25),
-                new BoxMesh(800, 25, rectGraphicElements2D)
+                new BoxMesh(800, 25, wallsGraphicElements2D)
         );
         scene1.add(ceiling);
 

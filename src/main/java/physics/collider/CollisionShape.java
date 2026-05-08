@@ -1,3 +1,5 @@
+package physics.collider;
+
 public class CollisionShape {
     public ColliderType colliderType;
 

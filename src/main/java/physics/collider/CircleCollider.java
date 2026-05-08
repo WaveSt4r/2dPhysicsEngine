@@ -1,3 +1,5 @@
+package physics.collider;
+
 public class CircleCollider extends CollisionShape {
     public double radius;
 
@@ -7,6 +9,6 @@ public class CircleCollider extends CollisionShape {
     }
 
     public String toString () {
-        return "CircleCollider\tR: " + radius;
+        return "physics.collider.CircleCollider\tR: " + radius;
     }
 }

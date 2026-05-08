@@ -1,3 +1,9 @@
+package render.mesh;
+
+import math.Vector2;
+import render.GraphicElements2D;
+import render.Renderer;
+
 public class CircleMesh implements Mesh {
     public double radius;
     GraphicElements2D graphicElements2D;

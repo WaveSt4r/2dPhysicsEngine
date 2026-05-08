@@ -1,6 +1,8 @@
+package physics.collider;
+
 public class BoxCollider extends CollisionShape {
-    double width;
-    double height;
+    public double width;
+    public double height;
 
     public BoxCollider(double width, double height) {
         super(ColliderType.BOX);
@@ -9,6 +11,6 @@ public class BoxCollider extends CollisionShape {
     }
 
     public String toString () {
-        return "BoxCollider\tW: " + width + "\tH: " + height;
+        return "physics.collider.BoxCollider\tW: " + width + "\tH: " + height;
     }
 }

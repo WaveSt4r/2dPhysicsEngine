@@ -1,3 +1,8 @@
+package core;
+
+import physics.Physics;
+import physics.RigidBody2D;
+
 import java.util.List;
 
 public class Scene {

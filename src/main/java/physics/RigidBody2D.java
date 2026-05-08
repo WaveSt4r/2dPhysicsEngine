@@ -1,3 +1,9 @@
+package physics;
+
+import math.Vector2;
+import physics.collider.CollisionShape;
+import render.mesh.Mesh;
+
 public class RigidBody2D {
     public Vector2 position;
     public Vector2 velocity;
@@ -25,7 +31,7 @@ public class RigidBody2D {
 
     @Override
     public String toString () {
-        return "X: " + position.x + "\tY: " + position.y + "\tShape: " + collisionShape + "\tMesh: " + mesh;
+        return "X: " + position.x + "\tY: " + position.y + "\tShape: " + collisionShape + "\trender.mesh.Mesh: " + mesh;
     }
 
 }

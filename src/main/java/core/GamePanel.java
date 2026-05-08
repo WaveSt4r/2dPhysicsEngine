@@ -1,3 +1,8 @@
+package core;
+
+import physics.Physics;
+import render.Renderer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -41,7 +46,7 @@ public class GamePanel extends JPanel {
         Renderer.initialize(img);
 
 
-        // Crea oggetto Game
+        // Crea oggetto core.Game
         Game game = new Game();
         // Crea Key listeners
         //game.createKeyListeners(frame);

@@ -1,4 +1,4 @@
-# 2D Physics Engine (Java)
+# 2D physics Engine (Java)
 
 A custom 2D physics engine written from scratch in Java.  
 This project focuses on understanding how game engines work internally by implementing rendering, motion, and collision systems without external libraries.
@@ -69,25 +69,41 @@ The goal is not to be production-ready, but to learn how physics engines and ren
 
 ```
 src/
-├── GamePanel.java # Contains the main method, initializes and starts the project
-├── Game.java # Main loop and initialization
-├── Scene.java # Holds and updates all objects
-├── Physics.java # Collision system + matrix
-├── Renderer.java # Software rendering
-|
-├── RigidBody2D.java # Physics data (position, velocity)
-├── CollisionShape.java # Collision shape of the RigidBody2D
-├── CircleCollider.java
-├── BoxCollider.java
-├── ColliderType.java
-|
-├── Mesh.java # Mesh of the RigidBody2D
-├── BoxMesh.java
-├── CircleMesh.java
-├── GraphicElements2D.java
-|
-├── Color.java # Color utilities
-├── Vector2.java # Math utilities
+├── core/
+│   ├── GamePanel.java          # Contains the main method, initializes the window and starts the engine
+│   ├── Game.java               # Main loop and engine lifecycle
+│   └── Scene.java              # Stores and updates all entities / rigid bodies
+│
+├── physics/
+│   ├── Physics.java            # Physics update pipeline and collision solver
+│   ├── RigidBody2D.java        # Physical object data (position, velocity, collider, mesh)
+│   │
+│   ├── collider/
+│   │   ├── CollisionShape.java     # Base collider abstraction
+│   │   ├── ColliderType.java       # Enum used for collision matrix indexing
+│   │   ├── CircleCollider.java
+│   │   └── BoxCollider.java
+│   │
+│   └── collision/
+│       ├── CollisionMatrix.java    # Stores collision handlers
+│       ├── CollisionSolver.java    # Collision response methods
+│       └── CollisionDetector.java  # Collision detection methods
+│
+├── render/
+│   ├── Renderer.java           # Software renderer and drawing utilities
+│   ├── GraphicElements2D.java  # Fill/border rendering data
+│   ├── ColorRGB.java           # Color utilities and RGB handling
+│   │
+│   └── mesh/
+│       ├── Mesh.java           # Base render mesh abstraction
+│       ├── CircleMesh.java
+│       └── BoxMesh.java
+│
+├── math/
+│   └── Vector2.java            # 2D vector math utilities
+│
+└── util/
+    └── Time.java               # Delta time / timing utilities (future)
 ```
 
 ---
@@ -142,7 +158,7 @@ Instead of using existing engines, the goal is to:
 
 1. Clone the repository
 2. Open the project in IntelliJ IDEA (or any Java IDE)
-3. Run `GamePanel` (or your main entry class)
+3. Run `core.GamePanel` (or your main entry class)
 
 ---
 

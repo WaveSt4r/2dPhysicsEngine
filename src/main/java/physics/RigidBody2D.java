@@ -15,9 +15,13 @@ public class RigidBody2D {
 
     public RigidBody2D(Vector2 position, Double mass, CollisionShape collisionShape, Mesh mesh) {
         this.position = position;
-        this.velocity = new Vector2(0,0);
+        this.mass = mass;
+
         this.collisionShape = collisionShape;
+
         this.mesh = mesh;
+
+        this.velocity = new Vector2(0,0);
         this.isStatic = false;
     }
 

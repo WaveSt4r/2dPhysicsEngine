@@ -49,7 +49,7 @@ public class GamePanel extends JPanel {
         // Crea oggetto core.Game
         Game game = new Game();
         // Crea Key listeners
-        //game.createKeyListeners(frame);
+        game.createKeyListeners(frame);
         // Avvia il motore fisico
         Physics.start();
 

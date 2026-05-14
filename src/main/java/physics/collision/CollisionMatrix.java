@@ -13,7 +13,13 @@ public class CollisionMatrix {
         int size = ColliderType.values().length;
         collisionMatrix = new BiConsumer[size][size];
 
+        linkMethods();
+    }
+
+    public void linkMethods () {
         collisionMatrix[ColliderType.CIRCLE.ordinal()][ColliderType.BOX.ordinal()] = Physics::manageCircleBoxCollision;
+        collisionMatrix[ColliderType.BOX.ordinal()][ColliderType.CIRCLE.ordinal()] = Physics::manageCircleBoxCollision;
+        collisionMatrix[ColliderType.CIRCLE.ordinal()][ColliderType.CIRCLE.ordinal()] = Physics::manageCircleCircleCollision;
     }
 
     public void acceptCollision (RigidBody2D rb1, RigidBody2D rb2) {

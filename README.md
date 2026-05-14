@@ -52,6 +52,7 @@ The goal is not to be production-ready, but to learn how physics engines and ren
   - Maps collider types → collision functions
 - Currently implemented:
   - Circle vs Box (basic)
+  - Circle vs Circle
 
 ---
 
@@ -113,7 +114,7 @@ src/
 - Game loop design
 - Real-time simulation
 - Collision detection
-- Collision response (basic)
+- Collision response
 - Software rendering
 - Object-Oriented vs Component-Based design
 - Function-based dispatch (`BiConsumer`)
@@ -122,9 +123,9 @@ src/
 
 ## Current Limitations
 
-- Collision detection is approximate (not fully accurate)
+- Circle Box collision detection is approximate (not fully accurate)
 - No proper collision resolution (impulses not implemented)
-- No gravity or forces yet
+- Gravity may cause tunneling
 - No optimization (broad-phase missing)
 - Order-dependent behavior may still occur in some cases
 
@@ -133,9 +134,9 @@ src/
 ## Future Improvements
 
 - Accurate collision detection (e.g. circle-box using closest point)
-- Circle vs Circle and Box vs Box collisions
+- Circle vs Parallelogram and Box vs Box collisions
 - Proper physics response (impulse-based)
-- Gravity and forces
+- Forces
 - Static Bodies
 - Spatial partitioning (QuadTree / Grid)
 - Better architecture (full composition / ECS approach)

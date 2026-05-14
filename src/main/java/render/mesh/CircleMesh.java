@@ -14,6 +14,6 @@ public class CircleMesh implements Mesh {
     }
 
     public void draw (Vector2 position) {
-        Renderer.drawCircle((int) Math.round(position.x),(int) Math.round(position.y), (int) Math.round(radius), graphicElements2D);
+        Renderer.drawCircle(position, (int) Math.round(radius), graphicElements2D);
     }
 }

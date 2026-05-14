@@ -1,13 +1,13 @@
 package render;
 
 public class GraphicElements2D {
-    public ColorRGB fillColorRGB;
-    public ColorRGB borderColorRGB;
+    public ColorRGB fillColor;
+    public ColorRGB borderColor;
     public int borderWidth;
 
-    public GraphicElements2D (ColorRGB fillColorRGB, ColorRGB borderColorRGB, int borderWidth) {
-        this.fillColorRGB = fillColorRGB;
-        this.borderColorRGB = borderColorRGB;
+    public GraphicElements2D (ColorRGB fillColor, ColorRGB borderColor, int borderWidth) {
+        this.fillColor = fillColor;
+        this.borderColor = borderColor;
         this.borderWidth = borderWidth;
     }
 
@@ -19,9 +19,9 @@ public class GraphicElements2D {
     }
     */
 
-    public GraphicElements2D (ColorRGB fillColorRGB) {
-        this.fillColorRGB = fillColorRGB;
-        this.borderColorRGB = new ColorRGB(0,0,0);
+    public GraphicElements2D (ColorRGB fillColor) {
+        this.fillColor = fillColor;
+        this.borderColor = new ColorRGB(0,0,0);
         this.borderWidth = 0;
     }
 

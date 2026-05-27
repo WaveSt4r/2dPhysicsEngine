@@ -52,6 +52,7 @@ The goal is not to be production-ready, but to learn how physics engines and ren
   - Maps collider types → collision functions
 - Currently implemented:
   - Circle vs Box (basic)
+  - Circle vs Circle (basic)
 
 ---
 
@@ -99,11 +100,11 @@ src/
 │       ├── CircleMesh.java
 │       └── BoxMesh.java
 │
-├── math/
-│   └── Vector2.java            # 2D vector math utilities
+├── scenes/
+│   └── Scene1.java             # Scene 1
 │
-└── util/
-    └── Time.java               # Delta time / timing utilities (future)
+└── math/
+    └── Vector2.java            # 2D vector math utilities
 ```
 
 ---
@@ -115,7 +116,6 @@ src/
 - Collision detection
 - Collision response (basic)
 - Software rendering
-- Object-Oriented vs Component-Based design
 - Function-based dispatch (`BiConsumer`)
 
 ---
@@ -124,7 +124,7 @@ src/
 
 - Collision detection is approximate (not fully accurate)
 - No proper collision resolution (impulses not implemented)
-- No gravity or forces yet
+- Gravity may cause tunneling
 - No optimization (broad-phase missing)
 - Order-dependent behavior may still occur in some cases
 
@@ -133,9 +133,9 @@ src/
 ## Future Improvements
 
 - Accurate collision detection (e.g. circle-box using closest point)
-- Circle vs Circle and Box vs Box collisions
+- Circle vs Parallelogram and Box vs Box collisions
 - Proper physics response (impulse-based)
-- Gravity and forces
+- Forces
 - Static Bodies
 - Spatial partitioning (QuadTree / Grid)
 - Better architecture (full composition / ECS approach)
@@ -165,9 +165,9 @@ Instead of using existing engines, the goal is to:
 ## Inspiration
 
 Inspired by:
+- This Youtube video by ZanzLanz: https://www.youtube.com/watch?v=nXrEX6j-Mws&t=287s
 - Game engine architecture principles
 - Low-level rendering techniques
-- This Youtube video by ZanzLanz: https://www.youtube.com/watch?v=nXrEX6j-Mws&t=287s
 
 ---
 

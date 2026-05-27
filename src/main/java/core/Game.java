@@ -7,6 +7,7 @@ import physics.RigidBody2D;
 import render.*;
 import render.mesh.BoxMesh;
 import render.mesh.CircleMesh;
+import scenes.Scene1;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -16,108 +17,45 @@ import java.util.List;
 
 public class Game {
     public boolean game = true;
+    public final int DT = 16;
+
     public Scene currentScene;
 
     public static ColorRGB backgroundColor = new ColorRGB(15,80,115);
-    public static ColorRGB foregroundColor = new ColorRGB(255,255,255);
-    public static ColorRGB borderColor = new ColorRGB(255,255,255);
-    public static ColorRGB wallsColor = new ColorRGB(97,157,91);
 
     public static double gravity = 0;
 
     public void start () {
-        List<RigidBody2D> rigidBody2DList = new ArrayList<>();
-        Scene scene1 = new Scene(rigidBody2DList);
-
-        // Ball
-        RigidBody2D ball = new RigidBody2D(
-                new Vector2(100, 300),
-                1d,
-                new CircleCollider(20),
-                new CircleMesh(20, new GraphicElements2D(new ColorRGB(255,0,0)))
-        );
-        ball.velocity.set(5,0);
-        scene1.add(ball);
-
-        // Ball2
-        RigidBody2D ball2 = new RigidBody2D(
-                new Vector2(500, 280),
-                1d,
-                new CircleCollider(20),
-                new CircleMesh(20, new GraphicElements2D(new ColorRGB(0,255,0)))
-        );
-        ball2.velocity.set(0,0);
-        scene1.add(ball2);
-
-
-        // Box
-        GraphicElements2D wallsGraphicElements2D = new GraphicElements2D(wallsColor, borderColor, 5);
-//        RigidBody2D box = new RigidBody2D(
-//                new Vector2(500,400),
-//                1d,
-//                new BoxCollider(50, 50),
-//                new BoxMesh(50, 50, wallsGraphicElements2D)
-//        );
-//        scene1.add(box);
-
-
-        // Floor
-        RigidBody2D floor = new RigidBody2D(
-                new Vector2(0,550),
-                1d,
-                new BoxCollider(800, 50),
-                new BoxMesh(800, 50, wallsGraphicElements2D)
-        );
-        floor.isStatic = true;
-        scene1.add(floor);
-
-
-        // Right Wall
-        RigidBody2D leftWall = new RigidBody2D(
-                new Vector2(750,0),
-                1d,
-                new BoxCollider(50, 600),
-                new BoxMesh(50, 600, wallsGraphicElements2D)
-        );
-        leftWall.isStatic = true;
-        scene1.add(leftWall);
-
-
-        // Right Wall
-        RigidBody2D rightWall = new RigidBody2D(
-                new Vector2(0,0),
-                1d,
-                new BoxCollider(50, 600),
-                new BoxMesh(50, 600, wallsGraphicElements2D)
-        );
-        rightWall.isStatic = true;
-        scene1.add(rightWall);
-
-
-        // ceiling Wall
-        RigidBody2D ceiling = new RigidBody2D(
-                new Vector2(0,0),
-                1d,
-                new BoxCollider(800, 25),
-                new BoxMesh(800, 25, wallsGraphicElements2D)
-        );
-        ceiling.isStatic = true;
-        scene1.add(ceiling);
-
-
-        currentScene = scene1;
+        Scene scene2 = Scene1.load();
+        currentScene = scene2;
     }
 
 
     public void loop () {
+//        int n = 15;
+//        int i = 0;
+//        int waitTime = 10;
+//        int t = 0;
         while (game) {
             // CLear Buffer
             Renderer.clearToColor(backgroundColor);
 
+//            t++;
+//            if(i<n && t==waitTime) {
+//                RigidBody2D ball = new RigidBody2D(
+//                        new Vector2(100, 300),
+//                        1d,
+//                        new CircleCollider(20),
+//                        new CircleMesh(20, new GraphicElements2D(new ColorRGB((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255))))
+//                );
+//                ball.velocity.set(5,0);
+//                currentScene.add(ball);
+//                i++;
+//                t=0;
+//            }
 
             // Update
             currentScene.update();
-
 
             // Draw
             currentScene.draw();
@@ -131,7 +69,7 @@ public class Game {
 
             // 60 fps
             try {
-                Thread.sleep(16);
+                Thread.sleep(DT);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

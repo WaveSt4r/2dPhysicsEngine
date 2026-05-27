@@ -3,12 +3,12 @@ package core;
 import physics.Physics;
 import physics.RigidBody2D;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Scene {
-    List<RigidBody2D> rigidBody2DList;
+    ArrayList<RigidBody2D> rigidBody2DList;
 
-    public Scene (List<RigidBody2D> rigidBody2DList) {
+    public Scene (ArrayList<RigidBody2D> rigidBody2DList) {
         this.rigidBody2DList = rigidBody2DList;
     }
 

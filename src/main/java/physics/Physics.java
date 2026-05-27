@@ -28,16 +28,17 @@ public abstract class Physics {
 
             // apply speed
             rb1.position.add(rb1.velocity);
-        }
 
-        //solve collisions
-        for (int i = 0; i < len; i++) {
-            RigidBody2D rb1 = rigidBody2DList.get(i);
             for(int j = i + 1; j < len; j++) {
                 RigidBody2D rb2 = rigidBody2DList.get(j);
                 collisionMatrix.acceptCollision(rb1, rb2);
             }
         }
+
+        //solve collisions
+//        for (int i = 0; i < len; i++) {
+//            RigidBody2D rb1 = rigidBody2DList.get(i);
+//        }
     }
 
     public static void manageCircleBoxCollision(RigidBody2D cRB, RigidBody2D bRB) {

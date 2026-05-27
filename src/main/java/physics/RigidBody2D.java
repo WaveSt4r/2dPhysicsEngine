@@ -25,6 +25,15 @@ public class RigidBody2D {
         this.isStatic = false;
     }
 
+    public RigidBody2D(Vector2 position, Vector2 velocity, double mass, CollisionShape collisionShape, Mesh mesh, boolean isStatic) {
+        this.position = position;
+        this.velocity = velocity;
+        this.mass = mass;
+        this.collisionShape = collisionShape;
+        this.mesh = mesh;
+        this.isStatic = isStatic;
+    }
+
     public void draw () {
         mesh.draw(position);
     }

@@ -19,9 +19,11 @@ The goal is not to be production-ready, but to learn how physics engines and ren
 ### Rendering
 - Custom software renderer using `BufferedImage`
 - Pixel-by-pixel drawing
-- Primitive shapes:
+- Shapes:
   - Circles
   - Rectangles
+  - Polygons
+  - Lines
 - Clear separation between rendering and logic
 
 ---
@@ -35,9 +37,12 @@ The goal is not to be production-ready, but to learn how physics engines and ren
 ---
 
 ### Physics System
-- Basic rigid body implementation:
+- Rigid body implementation:
   - Position (`Vector2`)
   - Velocity (`Vector2`)
+  - Mass (`double`)
+  - Restitution (`double`)
+  - Friction (`double`)
 - Scene-based object management
 - Separation between:
   - Physics
@@ -51,8 +56,9 @@ The goal is not to be production-ready, but to learn how physics engines and ren
 - Collision matrix using `BiConsumer`:
   - Maps collider types → collision functions
 - Currently implemented:
-  - Circle vs Box (basic)
-  - Circle vs Circle (basic)
+  - Circle vs Box
+  - Circle vs Circle
+  - Circle vs Segment
 
 ---
 
@@ -83,10 +89,11 @@ src/
 │   │   ├── CollisionShape.java     # Base collider abstraction
 │   │   ├── ColliderType.java       # Enum used for collision matrix indexing
 │   │   ├── CircleCollider.java
-│   │   └── BoxCollider.java
+│   │   ├── BoxCollider.java
+│   │   └── PolygonCollider.java
 │   │
 │   └── collision/
-│       ├── CollisionMatrix.java    # Stores collision handlers
+│       ├── CollisionMap.java       # Stores collision handlers
 │       ├── CollisionSolver.java    # Collision response methods
 │       └── CollisionDetector.java  # Collision detection methods
 │
@@ -98,13 +105,16 @@ src/
 │   └── mesh/
 │       ├── Mesh.java           # Base render mesh abstraction
 │       ├── CircleMesh.java
-│       └── BoxMesh.java
+│       ├── BoxMesh.java BoxMesh.java
+│       └── PolygonMesh.java
 │
 ├── scenes/
-│   └── Scene1.java             # Scene 1
+│   ├── Scene1.java             # Balls in a box
+│   └── Scene2.java             # Balls in a funnel
 │
 └── math/
-    └── Vector2.java            # 2D vector math utilities
+    ├── Vector2.java            # 2D vector math utilities
+    └── Segment.java            # Segment utilities
 ```
 
 ---
@@ -114,7 +124,7 @@ src/
 - Game loop design
 - Real-time simulation
 - Collision detection
-- Collision response (basic)
+- Collision response
 - Software rendering
 - Function-based dispatch (`BiConsumer`)
 
@@ -122,9 +132,8 @@ src/
 
 ## Current Limitations
 
-- Collision detection is approximate (not fully accurate)
 - No proper collision resolution (impulses not implemented)
-- Gravity may cause tunneling
+- High velocities may cause tunneling
 - No optimization (broad-phase missing)
 - Order-dependent behavior may still occur in some cases
 
@@ -132,14 +141,12 @@ src/
 
 ## Future Improvements
 
-- Accurate collision detection (e.g. circle-box using closest point)
-- Circle vs Parallelogram and Box vs Box collisions
+- Polygon vs Polygon collisions
 - Proper physics response (impulse-based)
-- Forces
-- Static Bodies
+- Full static bodies support
 - Spatial partitioning (QuadTree / Grid)
 - Better architecture (full composition / ECS approach)
-- Rendering improvements (double buffering, UI layer)
+- Rendering improvements (LWJGL, UI layer)
 
 ---
 
@@ -158,14 +165,14 @@ Instead of using existing engines, the goal is to:
 
 1. Clone the repository
 2. Open the project in IntelliJ IDEA (or any Java IDE)
-3. Run `core.GamePanel` (or your main entry class)
+3. Run `core.Launcher` (or your main entry class)
 
 ---
 
 ## Inspiration
 
 Inspired by:
-- This Youtube video by ZanzLanz: https://www.youtube.com/watch?v=nXrEX6j-Mws&t=287s
+- This YouTube video by ZanzLanz: https://www.youtube.com/watch?v=nXrEX6j-Mws&t=287s
 - Game engine architecture principles
 - Low-level rendering techniques
 

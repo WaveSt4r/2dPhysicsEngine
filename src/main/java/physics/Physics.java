@@ -1,44 +1,43 @@
 package physics;
 
 import core.Game;
+import math.Segment;
 import physics.collider.ColliderType;
 import physics.collision.CollisionDetector;
-import physics.collision.CollisionMatrix;
+import physics.collision.CollisionMap;
 import physics.collision.CollisionSolver;
 
 import java.util.List;
 
 public abstract class Physics {
-    public static CollisionMatrix collisionMatrix;
+    public static CollisionMap collisionMap;
 
     public static void start() {
-        collisionMatrix = new CollisionMatrix();
+        collisionMap = new CollisionMap();
     }
 
-    public static void update (List<RigidBody2D> rigidBody2DList) {
+    public static void update(List<RigidBody2D> rigidBody2DList) {
         int len = rigidBody2DList.size();
 
-        for (int i = 0; i < len; i++) {
-            RigidBody2D rb1 = rigidBody2DList.get(i);
-
+        for (RigidBody2D rb1 : rigidBody2DList) {
             // apply gravity
-            if (rb1.mass>0 && !rb1.isStatic) {
+            if (rb1.mass > 0 && !rb1.isStatic) {
                 rb1.velocity.y += Game.gravity;
             }
 
             // apply speed
             rb1.position.add(rb1.velocity);
-
-            for(int j = i + 1; j < len; j++) {
-                RigidBody2D rb2 = rigidBody2DList.get(j);
-                collisionMatrix.acceptCollision(rb1, rb2);
-            }
         }
 
         //solve collisions
-//        for (int i = 0; i < len; i++) {
-//            RigidBody2D rb1 = rigidBody2DList.get(i);
-//        }
+        for (int i = 0; i < len; i++) {
+            RigidBody2D rb1 = rigidBody2DList.get(i);
+            for (int j = i + 1; j < len; j++) {
+                RigidBody2D rb2 = rigidBody2DList.get(j);
+                collisionMap.acceptCollision(rb1, rb2);
+            }
+        }
+
     }
 
     public static void manageCircleBoxCollision(RigidBody2D cRB, RigidBody2D bRB) {
@@ -48,15 +47,28 @@ public abstract class Physics {
             bRB = t;
         }
 
-        if(CollisionDetector.checkCircleBoxCollision(cRB, bRB)) {
+        if (CollisionDetector.checkCircleBoxCollision(cRB, bRB)) {
             CollisionSolver.solveCircleBoxCollision(cRB, bRB);
         }
     }
 
     public static void manageCircleCircleCollision(RigidBody2D circle1, RigidBody2D circle2) {
         //System.out.println("circle1: " + circle1.position + "\tcircle2: " + circle2.position);
-        if(CollisionDetector.checkCircleCircleCollision(circle1, circle2)) {
+        if (CollisionDetector.checkCircleCircleCollision(circle1, circle2)) {
             CollisionSolver.solveCircleCircleCollision(circle1, circle2);
+        }
+    }
+
+    public static void manageCirclePolygonCollision(RigidBody2D c, RigidBody2D p) {
+        if (c.collisionShape.colliderType == ColliderType.POLYGON) {
+            RigidBody2D t = c;
+            c = p;
+            p = t;
+        }
+
+        Segment seg = CollisionDetector.checkCirclePolygonCollision(c, p);
+        if (seg != null) {
+            CollisionSolver.solveCircleSegmentCollision(c, seg);
         }
     }
 }

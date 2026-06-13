@@ -1,5 +1,7 @@
 package physics.collider;
 
+import math.Vector2;
+
 public class CircleCollider extends CollisionShape {
     public double radius;
 
@@ -8,7 +10,12 @@ public class CircleCollider extends CollisionShape {
         this.radius = radius;
     }
 
-    public String toString () {
+    @Override
+    public boolean isPointInside(Vector2 point) {
+        return (point.magnitudeSquared() <= this.radius * this.radius);
+    }
+
+    public String toString() {
         return "physics.collider.CircleCollider\tR: " + radius;
     }
 }

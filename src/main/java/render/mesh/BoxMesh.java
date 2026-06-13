@@ -15,7 +15,7 @@ public class BoxMesh implements Mesh {
         this.graphicElements2D = graphicElements2D;
     }
 
-    public void draw (Vector2 position) {
+    public void draw(Vector2 position) {
         Renderer.drawRect((int) Math.round(position.x), (int) Math.round(position.y), (int) Math.round(width), (int) Math.round(height), graphicElements2D);
     }
 }

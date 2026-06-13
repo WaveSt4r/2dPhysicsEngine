@@ -13,7 +13,7 @@ public class CircleMesh implements Mesh {
         this.graphicElements2D = graphicElements2D;
     }
 
-    public void draw (Vector2 position) {
+    public void draw(Vector2 position) {
         Renderer.drawCircle(position, (int) Math.round(radius), graphicElements2D);
     }
 }

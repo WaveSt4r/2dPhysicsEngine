@@ -21,7 +21,7 @@ public abstract class Physics {
 
         for (RigidBody2D rb1 : rigidBody2DList) {
             // apply gravity
-            if (rb1.mass > 0 && !rb1.isStatic) {
+            if (rb1.mass > 0 && !rb1.isStatic && rb1 != Game.selectedRigidBody) {
                 rb1.velocity.y += Game.gravity;
             }
 

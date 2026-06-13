@@ -37,17 +37,13 @@ The goal is not to be production-ready, but to learn how physics engines and ren
 ---
 
 ### Physics System
-- Rigid body implementation:
-  - Position (`Vector2`)
-  - Velocity (`Vector2`)
-  - Mass (`double`)
-  - Restitution (`double`)
-  - Friction (`double`)
+- 2D rigid body simulation
+- Velocity-based movement
+- Mass, restitution and friction support
+- Collision detection and response
+- Collision map architecture
 - Scene-based object management
-- Separation between:
-  - Physics
-  - Rendering
-  - Object data
+- Interactive object dragging with mouse
 
 ---
 
@@ -127,6 +123,7 @@ src/
 - Collision response
 - Software rendering
 - Function-based dispatch (`BiConsumer`)
+- Operations with Vectors
 
 ---
 
@@ -141,6 +138,8 @@ src/
 
 ## Future Improvements
 
+- Springs and Joints
+- Scene editor
 - Polygon vs Polygon collisions
 - Proper physics response (impulse-based)
 - Full static bodies support
